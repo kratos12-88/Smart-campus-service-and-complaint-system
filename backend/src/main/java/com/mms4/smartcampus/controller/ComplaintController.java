@@ -10,7 +10,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/complaints")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "https://smart-campus-service-and-complaint.vercel.app"
+})
 public class ComplaintController {
     private final ComplaintService service;
 
