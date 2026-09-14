@@ -8,7 +8,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/dashboard")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "https://smart-campus-service-and-complaint.vercel.app"
+})
 public class DashboardController {
     private final ComplaintRepository repository;
 
