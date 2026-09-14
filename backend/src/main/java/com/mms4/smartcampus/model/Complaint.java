@@ -32,6 +32,8 @@ public class Complaint {
     private String submittedBy;
     private String assignedTo;
     private String priority = "MEDIUM";
+    private Integer slaHours = 48;
+    private String evidenceName;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -40,6 +42,7 @@ public class Complaint {
         createdAt = LocalDateTime.now();
         updatedAt = createdAt;
         if (status == null) status = ComplaintStatus.SUBMITTED;
+        if (slaHours == null) slaHours = 48;
     }
 
     @PreUpdate
@@ -63,6 +66,10 @@ public class Complaint {
     public void setAssignedTo(String assignedTo) { this.assignedTo = assignedTo; }
     public String getPriority() { return priority; }
     public void setPriority(String priority) { this.priority = priority; }
+    public Integer getSlaHours() { return slaHours; }
+    public void setSlaHours(Integer slaHours) { this.slaHours = slaHours; }
+    public String getEvidenceName() { return evidenceName; }
+    public void setEvidenceName(String evidenceName) { this.evidenceName = evidenceName; }
     public LocalDateTime getCreatedAt() { return createdAt; }
     public LocalDateTime getUpdatedAt() { return updatedAt; }
 }
