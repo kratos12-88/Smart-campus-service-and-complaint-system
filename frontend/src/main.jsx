@@ -64,7 +64,6 @@ function App(){
       <section id="home" className="hero">
         <div className="container hero-grid">
           <div className="hero-copy">
-            <span className="eyebrow">Student-first campus support</span>
             <h1>Report campus problems.<br/><span>Track every resolution.</span></h1>
             <p>A single, reliable place for students to report maintenance, ICT, security and facility issues — with a clear process from submission to resolution.</p>
             <div className="hero-actions"><a className="btn primary" href="#report">Submit a complaint</a><a className="btn secondary" href="#how">How it works</a></div>
