@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: smart-campus-service-api
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/dashboard/summary
+    envVars:
+      - key: JAVA_OPTS
+        value: -XX:MaxRAMPercentage=75.0
