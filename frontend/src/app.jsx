@@ -1,6 +1,7 @@
 import React,{useEffect,useMemo,useState}from'react';
 import{createRoot}from'react-dom/client';
 import'./premium.css';
+import'./enhancements.css';
 import{api,isOverdue}from'./api';
 import{Footer,Header,NotFound}from'./components';
 import{Admin,Auth,ComplaintPage,Help,Home,Portal,Report,Services,Staff,Track,Updates}from'./pages';
@@ -18,8 +19,8 @@ function App(){
  const[user,setUser]=useState(()=>JSON.parse(localStorage.getItem('sc_user')||'null'));
  const[cases,setCases]=useState([]);const[apiOnline,setApiOnline]=useState(false);const[notifications,setNotifications]=useState([]);
  const loadCases=async()=>{try{const r=await api.get('/complaints');setCases(r.data||[]);setApiOnline(true)}catch{setCases(fallback);setApiOnline(false)}};
- const loadUser=async()=>{if(!localStorage.getItem('sc_token'))return;try{const r=await api.get('/auth/me');setUser(r.data);localStorage.setItem('sc_user',JSON.stringify(r.data));await refreshNotifications();setApiOnline(true)}catch{localStorage.removeItem('sc_token');localStorage.removeItem('sc_user');setUser(null)}};
  const refreshNotifications=async()=>{if(!localStorage.getItem('sc_token'))return;try{const r=await api.get('/auth/notifications');setNotifications(r.data||[])}catch{}};
+ const loadUser=async()=>{if(!localStorage.getItem('sc_token'))return;try{const r=await api.get('/auth/me');setUser(r.data);localStorage.setItem('sc_user',JSON.stringify(r.data));await refreshNotifications();setApiOnline(true)}catch{localStorage.removeItem('sc_token');localStorage.removeItem('sc_user');setUser(null)}};
  useEffect(()=>{loadCases();loadUser()},[]);
  const login=async(email,password)=>{const r=await api.post('/auth/login',{email,password});localStorage.setItem('sc_token',r.data.token);const u={id:r.data.id,name:r.data.name,email:r.data.email,role:r.data.role,department:r.data.department};localStorage.setItem('sc_user',JSON.stringify(u));setUser(u);setApiOnline(true);await loadCases();await refreshNotifications();return u};
  const register=async(name,email,password)=>{const r=await api.post('/auth/register',{name,email,password});localStorage.setItem('sc_token',r.data.token);const u={id:r.data.id,name:r.data.name,email:r.data.email,role:r.data.role,department:r.data.department};localStorage.setItem('sc_user',JSON.stringify(u));setUser(u);setApiOnline(true);return u};
