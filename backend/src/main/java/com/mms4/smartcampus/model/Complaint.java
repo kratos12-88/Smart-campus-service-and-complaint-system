@@ -21,6 +21,11 @@ public class Complaint {
     private String submittedByEmail;
     private String assignedTo;
     private String department;
+    private String schoolName;
+    private String campusName;
+    private Double mapX;
+    private Double mapY;
+    private String mapLabel;
     private String priority = "MEDIUM";
     private Integer slaHours = 48;
     private String evidenceName;
@@ -64,6 +69,11 @@ public class Complaint {
     public String getSubmittedByEmail(){return submittedByEmail;} public void setSubmittedByEmail(String v){submittedByEmail=v;}
     public String getAssignedTo(){return assignedTo;} public void setAssignedTo(String v){assignedTo=v;}
     public String getDepartment(){return department;} public void setDepartment(String v){department=v;}
+    public String getSchoolName(){return schoolName;} public void setSchoolName(String v){schoolName=v;}
+    public String getCampusName(){return campusName;} public void setCampusName(String v){campusName=v;}
+    public Double getMapX(){return mapX;} public void setMapX(Double v){mapX=v;}
+    public Double getMapY(){return mapY;} public void setMapY(Double v){mapY=v;}
+    public String getMapLabel(){return mapLabel;} public void setMapLabel(String v){mapLabel=v;}
     public String getPriority(){return priority;} public void setPriority(String v){priority=v;}
     public Integer getSlaHours(){return slaHours;} public void setSlaHours(Integer v){slaHours=v;}
     public String getEvidenceName(){return evidenceName;} public void setEvidenceName(String v){evidenceName=v;}
