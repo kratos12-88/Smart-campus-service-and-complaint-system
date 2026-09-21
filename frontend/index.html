@@ -4,22 +4,22 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <meta name="description" content="Smart Campus Service & Complaint Management System — report, track and resolve campus maintenance, ICT, security and facility issues."/>
-  <meta name="theme-color" content="#ffffff"/>
+  <meta name="theme-color" content="#fffdf8"/>
   <title>Smart Campus | Service & Complaint Management</title>
   <style>
-    html,body{margin:0;min-height:100%;background:#f5f7fa}
-    #smart-campus-splash{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;background:#ffffff;color:#0f172a;overflow:hidden;transition:opacity .5s ease,visibility .5s ease}
+    html,body{margin:0;min-height:100%;background:#f4f0e8}
+    #smart-campus-splash{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;background:#fffdf8;color:#1f2925;overflow:hidden;transition:opacity .5s ease,visibility .5s ease}
     #smart-campus-splash.splash-exit{opacity:0;visibility:hidden;pointer-events:none}
     .splash-inner{width:min(520px,84vw);display:flex;flex-direction:column;align-items:center;text-align:center;transform:translateY(8px);animation:splashEnter .7s cubic-bezier(.22,1,.36,1) forwards}
     .splash-mark-wrap{width:96px;height:96px;display:grid;place-items:center;position:relative;margin-bottom:22px}
-    .splash-mark-wrap:before{content:"";position:absolute;inset:0;border:1px solid #d9e1ec;transform:scale(.72);opacity:0;animation:frameIn .6s .12s ease forwards}
+    .splash-mark-wrap:before{content:"";position:absolute;inset:0;border:1px solid #d8d1c4;transform:scale(.72);opacity:0;animation:frameIn .6s .12s ease forwards}
     .splash-mark{width:74px;height:74px;display:block;opacity:0;transform:scale(.72) translateY(8px);animation:markIn .7s .18s cubic-bezier(.22,1,.36,1) forwards}
-    .splash-name{font-family:Inter,Arial,sans-serif;font-size:clamp(1.55rem,4vw,2.25rem);font-weight:800;letter-spacing:-.045em;margin:0;color:#0f172a;opacity:0;transform:translateY(12px);animation:textIn .6s .38s ease forwards}
-    .splash-subtitle{font-family:Inter,Arial,sans-serif;font-size:.77rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#64748b;margin-top:8px;opacity:0;transform:translateY(10px);animation:textIn .55s .5s ease forwards}
-    .splash-loader{width:180px;height:3px;background:#e2e8f0;margin-top:30px;overflow:hidden;opacity:0;animation:loaderShow .25s .65s forwards}
-    .splash-loader span{display:block;width:38%;height:100%;background:#1d4ed8;transform:translateX(-115%);animation:loaderMove 1.05s .7s cubic-bezier(.65,0,.35,1) infinite}
-    .splash-status{font-family:Inter,Arial,sans-serif;margin-top:12px;font-size:.74rem;color:#94a3b8;letter-spacing:.04em;opacity:0;animation:loaderShow .3s .78s forwards}
-    .splash-corner{position:absolute;width:28px;height:28px;border-color:#d9e1ec;border-style:solid;opacity:0;animation:cornerIn .45s .25s forwards}
+    .splash-name{font-family:Inter,Arial,sans-serif;font-size:clamp(1.55rem,4vw,2.25rem);font-weight:800;letter-spacing:-.045em;margin:0;color:#1f2925;opacity:0;transform:translateY(12px);animation:textIn .6s .38s ease forwards}
+    .splash-subtitle{font-family:Inter,Arial,sans-serif;font-size:.77rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6b6a63;margin-top:8px;opacity:0;transform:translateY(10px);animation:textIn .55s .5s ease forwards}
+    .splash-loader{width:180px;height:3px;background:#ded8cc;margin-top:30px;overflow:hidden;opacity:0;animation:loaderShow .25s .65s forwards}
+    .splash-loader span{display:block;width:38%;height:100%;background:#24513f;transform:translateX(-115%);animation:loaderMove 1.05s .7s cubic-bezier(.65,0,.35,1) infinite}
+    .splash-status{font-family:Inter,Arial,sans-serif;margin-top:12px;font-size:.74rem;color:#8a877f;letter-spacing:.04em;opacity:0;animation:loaderShow .3s .78s forwards}
+    .splash-corner{position:absolute;width:28px;height:28px;border-color:#d8d1c4;border-style:solid;opacity:0;animation:cornerIn .45s .25s forwards}
     .splash-corner.tl{top:28px;left:28px;border-width:1px 0 0 1px}.splash-corner.tr{top:28px;right:28px;border-width:1px 1px 0 0}.splash-corner.bl{bottom:28px;left:28px;border-width:0 0 1px 1px}.splash-corner.br{bottom:28px;right:28px;border-width:0 1px 1px 0}
     @keyframes splashEnter{to{transform:translateY(0)}}
     @keyframes markIn{to{opacity:1;transform:scale(1) translateY(0)}}
