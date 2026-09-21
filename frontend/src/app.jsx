@@ -4,7 +4,7 @@ import'./premium.css';
 import'./enhancements.css';
 import{api,isOverdue}from'./api';
 import{Footer,Header,NotFound}from'./components';
-import{Admin,Auth,ComplaintPage,Help,Home,Portal,Report,Services,Staff,Track,Updates}from'./pages';
+import{Admin,Auth,CampusMapPage,ComplaintPage,Help,Home,Portal,Report,Services,Staff,Track,Updates}from'./pages';
 
 const fallback=[
 {id:1042,title:'Library Wi-Fi outage',description:'Wi-Fi unavailable on second floor.',category:'ICT',location:'Main Library',status:'IN_PROGRESS',priority:'HIGH',submittedBy:'Student Demo',assignedTo:'ICT Support Team',department:'ICT Services',createdAt:'2026-09-14T10:20:00',dueAt:'2026-09-14T22:20:00',slaHours:12,comments:['2026-09-14T11:10:00|ICT Support|We are checking the access points.'],auditTrail:['2026-09-14T10:20:00|SYSTEM|Complaint submitted']},
@@ -28,7 +28,7 @@ function App(){
  const summary=useMemo(()=>{const total=cases.length,resolved=cases.filter(x=>['RESOLVED','CLOSED'].includes(x.status)).length,open=cases.filter(x=>!['RESOLVED','CLOSED','REJECTED'].includes(x.status)).length,overdue=cases.filter(isOverdue).length;return{total,resolved,open,overdue,rate:total?Math.round(resolved/total*100):0}},[cases]);
  const p={go,path,user,cases,setCases,summary,apiOnline,login,register,logout,notifications,refreshNotifications,loadCases};
  let page=<Home {...p}/>;
- if(path==='/services')page=<Services {...p}/>;else if(path==='/report')page=<Report {...p}/>;else if(path==='/track')page=<Track {...p}/>;else if(path.startsWith('/complaint/'))page=<ComplaintPage {...p} id={path.split('/').pop()}/>;else if(path==='/updates')page=<Updates {...p}/>;else if(path==='/portal')page=user?<Portal {...p}/>:<Auth {...p}/>;else if(path==='/staff')page=user&&['STAFF','ADMIN'].includes(user.role)?<Staff {...p}/>:<Auth {...p}/>;else if(path==='/admin')page=user?.role==='ADMIN'?<Admin {...p}/>:<Auth {...p}/>;else if(path==='/help')page=<Help {...p}/>;else if(path==='/login')page=<Auth {...p}/>;else if(path!=='/')page=<NotFound go={go}/>;
+ if(path==='/services')page=<Services {...p}/>;else if(path==='/report')page=<Report {...p}/>;else if(path==='/track')page=<Track {...p}/>;else if(path.startsWith('/complaint/'))page=<ComplaintPage {...p} id={path.split('/').pop()}/>;else if(path==='/updates')page=<Updates {...p}/>;else if(path==='/portal')page=user?<Portal {...p}/>:<Auth {...p}/>;else if(path==='/map')page=user?<CampusMapPage {...p}/>:<Auth {...p}/>;else if(path==='/staff')page=user&&['STAFF','ADMIN'].includes(user.role)?<Staff {...p}/>:<Auth {...p}/>;else if(path==='/admin')page=user?.role==='ADMIN'?<Admin {...p}/>:<Auth {...p}/>;else if(path==='/help')page=<Help {...p}/>;else if(path==='/login')page=<Auth {...p}/>;else if(path!=='/')page=<NotFound go={go}/>;
  return <div className="product-shell"><Header {...p}/><main>{page}</main><Footer go={go}/></div>
 }
 
