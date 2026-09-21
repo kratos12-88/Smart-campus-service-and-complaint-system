@@ -16,7 +16,7 @@ public class AuthController {
     public AuthController(AuthService auth,NotificationRepository notifications){this.auth=auth;this.notifications=notifications;}
 
     @PostMapping("/register")
-    public Map<String,Object> register(@RequestBody Map<String,String> b){UserAccount u=auth.register(b.get("name"),b.get("email"),b.get("password"),b.get("schoolName"),b.get("campusName"));String token=auth.login(u.getEmail(),b.get("password"));return session(u,token);}
+    public Map<String,Object> register(@RequestBody Map<String,String> b){UserAccount u=auth.register(b.get("name"),b.get("email"),b.get("password"),b.get("schoolName"),b.get("campusName"),b.get("schoolType"),b.get("schoolState"));String token=auth.login(u.getEmail(),b.get("password"));return session(u,token);}
 
     @PostMapping("/login")
     public Map<String,Object> login(@RequestBody Map<String,String> b){String token=auth.login(b.get("email"),b.get("password"));UserAccount u=auth.require("Bearer "+token);return session(u,token);}
@@ -33,5 +33,5 @@ public class AuthController {
     public Notification read(@PathVariable Long id,@RequestHeader("Authorization")String h){auth.require(h);Notification n=notifications.findById(id).orElseThrow();n.setReadFlag(true);return notifications.save(n);}
 
     private Map<String,Object> session(UserAccount u,String token){Map<String,Object> m=userMap(u);m.put("token",token);return m;}
-    private Map<String,Object> userMap(UserAccount u){Map<String,Object> m=new LinkedHashMap<>();m.put("id",u.getId());m.put("name",u.getName());m.put("email",u.getEmail());m.put("role",u.getRole());m.put("department",u.getDepartment());m.put("schoolName",u.getSchoolName());m.put("campusName",u.getCampusName());return m;}
+    private Map<String,Object> userMap(UserAccount u){Map<String,Object> m=new LinkedHashMap<>();m.put("id",u.getId());m.put("name",u.getName());m.put("email",u.getEmail());m.put("role",u.getRole());m.put("department",u.getDepartment());m.put("schoolName",u.getSchoolName());m.put("campusName",u.getCampusName());m.put("schoolType",u.getSchoolType());m.put("schoolState",u.getSchoolState());return m;}
 }
