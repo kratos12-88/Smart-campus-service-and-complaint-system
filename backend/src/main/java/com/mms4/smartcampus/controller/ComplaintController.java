@@ -16,7 +16,7 @@ public class ComplaintController {
     public ComplaintController(ComplaintService service,AuthService auth){this.service=service;this.auth=auth;}
 
     @GetMapping
-    public List<Complaint> all(@RequestHeader(value="Authorization",required=false)String h){UserAccount u=auth.optional(h);if(u!=null&&("STAFF".equals(u.getRole())||"ADMIN".equals(u.getRole())))return service.findAll();return service.recent();}
+    public List<Complaint> all(@RequestHeader(value="Authorization",required=false)String h){UserAccount u=auth.optional(h);return service.forUser(u);}
     @GetMapping("/recent") public List<Complaint> recent(){return service.recent();}
     @GetMapping("/mine") public List<Complaint> mine(@RequestHeader("Authorization")String h){UserAccount u=auth.require(h);return service.mine(u.getEmail());}
     @GetMapping("/{id}") public Complaint one(@PathVariable Long id){return service.findById(id);}
