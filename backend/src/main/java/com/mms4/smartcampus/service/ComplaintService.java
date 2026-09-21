@@ -3,6 +3,7 @@ package com.mms4.smartcampus.service;
 import com.mms4.smartcampus.model.*;
 import com.mms4.smartcampus.repository.ComplaintRepository;
 import com.mms4.smartcampus.repository.NotificationRepository;
+import com.mms4.smartcampus.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.Duration;
@@ -12,18 +13,21 @@ import java.util.*;
 public class ComplaintService {
     private final ComplaintRepository repository;
     private final NotificationRepository notifications;
-    public ComplaintService(ComplaintRepository repository,NotificationRepository notifications){this.repository=repository;this.notifications=notifications;}
+    private final UserRepository users;
+    public ComplaintService(ComplaintRepository repository,NotificationRepository notifications,UserRepository users){this.repository=repository;this.notifications=notifications;this.users=users;}
 
     public List<Complaint> findAll(){return repository.findAll();}
+    public List<Complaint> forUser(UserAccount user){if(user==null)return recent();if("ADMIN".equalsIgnoreCase(user.getRole())&& (user.getSchoolName()==null||user.getSchoolName().isBlank()))return findAll();if(("STAFF".equalsIgnoreCase(user.getRole())||"ADMIN".equalsIgnoreCase(user.getRole()))&&user.getSchoolName()!=null&&!user.getSchoolName().isBlank())return repository.findBySchoolNameIgnoreCaseOrderByCreatedAtDesc(user.getSchoolName());return recent();}
     public List<Complaint> recent(){return repository.findTop20ByOrderByCreatedAtDesc();}
     public List<Complaint> mine(String email){return repository.findBySubmittedByEmailIgnoreCaseOrderByCreatedAtDesc(email);}
     public Complaint findById(Long id){return repository.findById(id).orElseThrow(()->new IllegalArgumentException("Complaint not found: "+id));}
 
     public Complaint create(Complaint c,UserAccount user){
         c.setId(null);c.setStatus(ComplaintStatus.SUBMITTED);
-        if(user!=null){c.setSubmittedBy(user.getName());c.setSubmittedByEmail(user.getEmail());}
+        if(user!=null){c.setSubmittedBy(user.getName());c.setSubmittedByEmail(user.getEmail());c.setSchoolName(user.getSchoolName());c.setCampusName(user.getCampusName());}
+        if(c.getSchoolName()==null||c.getSchoolName().isBlank()) throw new IllegalArgumentException("School is required. Sign in or provide your school before reporting.");
         c.setSlaHours(slaFor(c.getCategory()));c.setDepartment(departmentFor(c.getCategory()));
-        Complaint saved=repository.save(c);notify(saved.getSubmittedByEmail(),"Complaint #"+saved.getId()+" submitted successfully","SUBMITTED",saved.getId());return saved;
+        Complaint saved=repository.save(c);notify(saved.getSubmittedByEmail(),"Complaint #"+saved.getId()+" submitted successfully","SUBMITTED",saved.getId());notifySchool(saved);return saved;
     }
 
     public Complaint updateStatus(Long id,ComplaintStatus status,UserAccount actor){
@@ -62,6 +66,7 @@ public class ComplaintService {
     public void delete(Long id){repository.deleteById(id);}
     private void audit(Complaint c,UserAccount actor,String action){c.getAuditTrail().add(LocalDateTime.now()+"|"+(actor==null?"SYSTEM":actor.getName())+"|"+action);}
     private void notify(String email,String message,String type,Long complaintId){if(email==null||email.isBlank())return;Notification n=new Notification();n.setRecipientEmail(email);n.setMessage(message);n.setType(type);n.setComplaintId(complaintId);notifications.save(n);}
+    private void notifySchool(Complaint c){if(c.getSchoolName()==null||c.getSchoolName().isBlank())return;for(UserAccount u:users.findBySchoolNameIgnoreCaseAndRoleIn(c.getSchoolName(),List.of("STAFF","ADMIN")))notify(u.getEmail(),"New "+c.getCategory().name().replace('_',' ')+" complaint #"+c.getId()+" at "+c.getLocation(),"SCHOOL_REPORT",c.getId());}
     private int slaFor(ComplaintCategory c){if(c==null)return 48;return switch(c){case SECURITY->1;case ICT->12;case WATER->24;case ELECTRICITY->24;case HOSTEL_MAINTENANCE->72;case CLASSROOM->48;default->48;};}
     private String departmentFor(ComplaintCategory c){if(c==null)return"General Services";return switch(c){case SECURITY->"Campus Security";case ICT->"ICT Services";case WATER,ELECTRICITY->"Facilities & Maintenance";case HOSTEL_MAINTENANCE->"Student Affairs";case CLASSROOM->"Academic Facilities";default->"General Services";};}
 }
