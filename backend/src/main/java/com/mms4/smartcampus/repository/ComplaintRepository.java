@@ -10,5 +10,6 @@ public interface ComplaintRepository extends JpaRepository<Complaint,Long>{
     long countByStatus(ComplaintStatus status);
     List<Complaint> findBySubmittedByEmailIgnoreCaseOrderByCreatedAtDesc(String email);
     List<Complaint> findTop20ByOrderByCreatedAtDesc();
+    List<Complaint> findBySchoolNameIgnoreCaseOrderByCreatedAtDesc(String schoolName);
     List<Complaint> findByCategoryAndLocationIgnoreCase(ComplaintCategory category,String location);
 }
