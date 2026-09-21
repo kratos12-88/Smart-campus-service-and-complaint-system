@@ -17,10 +17,10 @@ public class AuthService {
 
     public AuthService(UserRepository users, AuthSessionRepository sessions){this.users=users;this.sessions=sessions;}
 
-    public UserAccount register(String name,String email,String password){
-        if(email==null||password==null||name==null) throw new IllegalArgumentException("Name, email and password are required");
+    public UserAccount register(String name,String email,String password,String schoolName,String campusName){
+        if(email==null||password==null||name==null||schoolName==null||schoolName.isBlank()) throw new IllegalArgumentException("Name, email, password and school are required");
         if(users.findByEmailIgnoreCase(email).isPresent()) throw new IllegalArgumentException("An account with that email already exists");
-        UserAccount u=new UserAccount();u.setName(name.trim());u.setEmail(email.trim().toLowerCase());u.setPasswordHash(encoder.encode(password));u.setRole("STUDENT");return users.save(u);
+        UserAccount u=new UserAccount();u.setName(name.trim());u.setEmail(email.trim().toLowerCase());u.setPasswordHash(encoder.encode(password));u.setRole("STUDENT");u.setSchoolName(schoolName.trim());u.setCampusName(campusName==null?"":campusName.trim());return users.save(u);
     }
 
     public String login(String email,String password){
