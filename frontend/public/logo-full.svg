@@ -1,18 +1,18 @@
 <svg width="900" height="240" viewBox="0 0 900 240" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g transform="translate(28 18)">
-    <path d="M118 5C88 5 64 29 64 59C64 99 110 143 116 149C117 150 119 150 120 149C126 143 172 99 172 59C172 29 148 5 118 5Z" fill="#C76B4E"/>
+    <path d="M118 5C88 5 64 29 64 59C64 99 110 143 116 149C117 150 119 150 120 149C126 143 172 99 172 59C172 29 148 5 118 5Z" fill="#A45D8F"/>
     <circle cx="118" cy="58" r="31" fill="#FFFFFF"/>
-    <rect x="98" y="40" width="40" height="36" rx="4" fill="#24513F"/>
+    <rect x="98" y="40" width="40" height="36" rx="4" fill="#6F3B67"/>
     <rect x="106" y="49" width="24" height="3" fill="#FFFFFF"/>
     <rect x="106" y="58" width="20" height="3" fill="#FFFFFF"/>
     <rect x="106" y="67" width="15" height="3" fill="#FFFFFF"/>
-    <path d="M68 150L118 128L168 150V158H68V150Z" fill="#1F2925"/>
-    <path d="M55 166H181V198H55V166Z" fill="#1F2925"/>
-    <path d="M82 154H154V198H82V154Z" fill="#1F2925"/>
+    <path d="M68 150L118 128L168 150V158H68V150Z" fill="#2D2230"/>
+    <path d="M55 166H181V198H55V166Z" fill="#2D2230"/>
+    <path d="M82 154H154V198H82V154Z" fill="#2D2230"/>
     <path d="M105 165H131V198H105V165Z" fill="#FFFFFF"/>
-    <path d="M40 204C80 192 156 192 196 204C161 214 75 214 40 204Z" fill="#C76B4E"/>
+    <path d="M40 204C80 192 156 192 196 204C161 214 75 214 40 204Z" fill="#A45D8F"/>
   </g>
-  <rect x="255" y="38" width="3" height="166" fill="#D8D1C4"/>
-  <text x="292" y="126" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800" letter-spacing="-3" fill="#1F2925">Smart Campus</text>
-  <text x="295" y="171" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="1" fill="#24513F">Service &amp; Complaint Management</text>
+  <rect x="255" y="38" width="3" height="166" fill="#D9CCD8"/>
+  <text x="292" y="126" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800" letter-spacing="-3" fill="#2D2230">Smart Campus</text>
+  <text x="295" y="171" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="1" fill="#6F3B67">Service &amp; Complaint Management</text>
 </svg>
