@@ -12,6 +12,8 @@ public class UserAccount {
     @Column(nullable=false) private String passwordHash;
     @Column(nullable=false) private String role = "STUDENT";
     private String department;
+    private String schoolName;
+    private String campusName;
     private boolean active = true;
     private LocalDateTime createdAt = LocalDateTime.now();
 
@@ -21,6 +23,8 @@ public class UserAccount {
     public String getPasswordHash(){return passwordHash;} public void setPasswordHash(String v){passwordHash=v;}
     public String getRole(){return role;} public void setRole(String v){role=v;}
     public String getDepartment(){return department;} public void setDepartment(String v){department=v;}
+    public String getSchoolName(){return schoolName;} public void setSchoolName(String v){schoolName=v;}
+    public String getCampusName(){return campusName;} public void setCampusName(String v){campusName=v;}
     public boolean isActive(){return active;} public void setActive(boolean v){active=v;}
     public LocalDateTime getCreatedAt(){return createdAt;} public void setCreatedAt(LocalDateTime v){createdAt=v;}
 }
