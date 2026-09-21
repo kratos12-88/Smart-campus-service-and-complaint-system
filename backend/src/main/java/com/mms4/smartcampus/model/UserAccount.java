@@ -14,6 +14,8 @@ public class UserAccount {
     private String department;
     private String schoolName;
     private String campusName;
+    private String schoolType;
+    private String schoolState;
     private boolean active = true;
     private LocalDateTime createdAt = LocalDateTime.now();
 
@@ -25,6 +27,8 @@ public class UserAccount {
     public String getDepartment(){return department;} public void setDepartment(String v){department=v;}
     public String getSchoolName(){return schoolName;} public void setSchoolName(String v){schoolName=v;}
     public String getCampusName(){return campusName;} public void setCampusName(String v){campusName=v;}
+    public String getSchoolType(){return schoolType;} public void setSchoolType(String v){schoolType=v;}
+    public String getSchoolState(){return schoolState;} public void setSchoolState(String v){schoolState=v;}
     public boolean isActive(){return active;} public void setActive(boolean v){active=v;}
     public LocalDateTime getCreatedAt(){return createdAt;} public void setCreatedAt(LocalDateTime v){createdAt=v;}
 }
