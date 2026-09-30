@@ -177,3 +177,6 @@ This project is being developed as an MMS4 final-semester project. The system is
 🚧 **Development in progress**
 
 Current milestone: **MVP foundation and complaint-management API**.
+
+
+Rewrite in progress: plain HTML/CSS/JavaScript with MongoDB.
