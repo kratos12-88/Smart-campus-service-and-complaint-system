@@ -1,12 +1,9 @@
-FROM maven:3.9.9-eclipse-temurin-17 AS build
+FROM node:20-alpine
 WORKDIR /app
-COPY backend/pom.xml ./pom.xml
-RUN mvn -q -DskipTests dependency:go-offline
-COPY backend/src ./src
-RUN mvn -q clean package -DskipTests
-
-FROM eclipse-temurin:17-jre
-WORKDIR /app
-COPY --from=build /app/target/smart-campus-service-0.0.1-SNAPSHOT.jar app.jar
-EXPOSE 8080
-CMD ["java","-jar","app.jar"]
+COPY package.json ./
+RUN npm install --no-save express@4 mongodb@6
+COPY server.js ./
+COPY public ./public
+ENV NODE_ENV=production
+EXPOSE 10000
+CMD ["node","server.js"]
