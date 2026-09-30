@@ -1,10 +1,17 @@
 services:
   - type: web
-    name: smart-campus-service-api
+    name: smart-campus-service
     runtime: docker
-    rootDir: backend
     dockerfilePath: ./Dockerfile
-    healthCheckPath: /api/dashboard/summary
+    healthCheckPath: /api/health
     envVars:
-      - key: JAVA_OPTS
-        value: -XX:MaxRAMPercentage=75.0
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB
+        value: smart_campus
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ADMIN_NAME
+        value: Campus Administrator
