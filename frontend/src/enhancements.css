@@ -62,3 +62,5 @@
 @keyframes popover-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:760px){.live-flow{grid-template-columns:1fr 1fr;gap:10px}.live-flow i{display:none}.live-flow div{justify-content:flex-start}.flow-runner{display:none}.service-card:hover,.quick-card:hover,.analytics-card:hover,.role-card:hover,.help-card:hover{transform:none}.case-row:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+.field-error{color:#9b2929;font-size:.82rem;font-weight:500}.auth-card [aria-invalid=true]{border-color:#9b2929}.auth-card .password-visibility{display:flex;align-items:center;gap:8px;font-weight:500}.auth-card .password-visibility input{width:18px;height:18px}.map-coordinates{margin-top:12px}
